@@ -2,9 +2,9 @@
 #include<GL/gl.h>
 #include <GL/glut.h>
 #include<cmath>
+#include "Update.h"
 
 
-GLfloat angle = 0.0f;
 
 void update(int value) {
 
@@ -15,6 +15,22 @@ void update(int value) {
 	glutTimerFunc(1, update, 0);
 }
 
+//void updateCloud()
+/*void updateBoat(int value) {
+
+    if(boatPosition > .20)
+    {
+        boatPosition = 0;
+    }
+
+       boatPosition += boatSpeed;
+
+	glutPostRedisplay();
+
+
+	glutTimerFunc(100, updateBoat, 0);
+}
+*/
 void tree()
 {
     //Tree
@@ -315,7 +331,7 @@ glVertex2f(0.65f, -0.08f);
 glVertex2f(0.9f, -0.08f);
 glEnd();
 
-//Hills 8
+//Hills 9
 
 glColor3ub (0, 102, 0);
 glBegin(GL_POLYGON);
@@ -413,27 +429,27 @@ glEnd();
        glEnd();
        glPushMatrix();
         glRotatef(angle, 0.0, 0.0, 0.0);
- glBegin(GL_POLYGON);
-glVertex2f(0.805f, 0.0f);
-glVertex2f(0.91f, -0.29f);
-glVertex2f(0.94f, -0.31f);
-glVertex2f(0.825f, 0.01f);
-glEnd();
+     glBegin(GL_POLYGON);
+    glVertex2f(0.805f, 0.0f);
+    glVertex2f(0.91f, -0.29f);
+    glVertex2f(0.94f, -0.31f);
+    glVertex2f(0.825f, 0.01f);
+    glEnd();
 
- glBegin(GL_POLYGON);
-glVertex2f(0.795f, 0.0f);
-glVertex2f(0.91f, 0.29f);
-glVertex2f(0.94f, 0.31f);
-glVertex2f(0.825f, 0.01f);
-glEnd();
+     glBegin(GL_POLYGON);
+    glVertex2f(0.795f, 0.0f);
+    glVertex2f(0.91f, 0.29f);
+    glVertex2f(0.94f, 0.31f);
+    glVertex2f(0.825f, 0.01f);
+    glEnd();
 
- glBegin(GL_POLYGON);
-glVertex2f(0.79f, 0.015f);
-glVertex2f(0.6f, 0.01f);
-glVertex2f(0.585f, -0.02f);
-glVertex2f(0.79f, -0.015f);
-glEnd();
-glPopMatrix();
+     glBegin(GL_POLYGON);
+    glVertex2f(0.79f, 0.015f);
+    glVertex2f(0.6f, 0.01f);
+    glVertex2f(0.585f, -0.02f);
+    glVertex2f(0.79f, -0.015f);
+    glEnd();
+    glPopMatrix();
 }
 
 void sun()
@@ -698,26 +714,115 @@ void sky()
 	glVertex2f(-1, -.1);
 	glEnd();
 }
-void ship()
+void shipLeft()//this is left ship
 {
+
     //base
-    glColor3ub(255,110,0);
+    glPushMatrix();
+    glTranslatef(boatPosition,0.0f, 0.0f);
+
+        glColor3ub(255,110,0);
+        glBegin(GL_POLYGON);
+       glVertex2f(-0.69f, -0.42f);
+       glVertex2f(-0.62f, -0.42f);
+       glVertex2f(-0.58f, -0.36f);
+       glVertex2f(-0.73f, -0.36f);
+       glEnd();
+
+       //stick
+       glColor3ub(160,82,35);
+       glLineWidth(3);
+       glBegin(GL_LINES);
+       glVertex2f(-0.65,-0.36);
+       glVertex2f(-0.65,-0.2);
+       glEnd();
+
+       glColor3ub(255,255,255);
+       glBegin(GL_TRIANGLES);
+       glVertex2f(-0.655,-0.25);
+       glVertex2f(-0.655,-0.36);
+       glVertex2f(-0.71,-0.36);
+       glEnd();
+       glColor3ub(255,255,255);
+       glBegin(GL_POLYGON);
+       glVertex2f(-0.648,-0.2);
+       glVertex2f(-0.648,-0.36);
+       glVertex2f(-0.59,-0.36);
+       glVertex2f(-0.59,-0.30);
+       glVertex2f(-0.6,-0.31);
+       glVertex2f(-0.61,-0.28);
+       glVertex2f(-0.63,-0.24);
+       glEnd();
+    glPopMatrix();
+}
+
+
+void grass1()
+{
+    glColor3ub(28,230,0);
     glBegin(GL_POLYGON);
-   glVertex2f(-0.45f, -0.42f);
-   glVertex2f(-0.65f, -0.42f);
-   glVertex2f(-0.69f, -0.34f);
-   glVertex2f(-0.41f, -0.34f);
-   glEnd();
+    glVertex2f(-0.69f, -0.55f);
+    glVertex2f(-1.0f, -0.55f);
+    glVertex2f(-1.0,-1.0);
+    glVertex2f(-0.57,-1.0);
+    glVertex2f(-0.57,-0.72);
+    glVertex2f(-0.55,-0.69);
+    glVertex2f(-0.53,-0.67);
+    glVertex2f(-0.51,-0.65);
+    glVertex2f(-0.55,-0.63);
+    glVertex2f(-0.59,-0.6);
+    glEnd();
 
-   //stick
-   glColor3ub(160,82,35);
-   glLineWidth(2);
-   glBegin(GL_LINES);
-   glVertex2f(-0.55,-0.36);
-   glVertex2f(-0.55,-0.06);
-   glEnd();
+}
 
+void road1()
+{
 
+    glColor3ub(32,32,32);
+    glBegin(GL_POLYGON);
+    glVertex2f(-1.0f, -1.0f);
+    glVertex2f(-0.57f, -1.0f);
+    glVertex2f(-0.57f,-0.82);
+    glVertex2f(-1.0f,-0.82);
+    glEnd();
+}
+void bridge()
+{
+     glColor3ub(255,255,255);
+    glBegin(GL_POLYGON);
+    glVertex2f(-.57f, -1.0f);
+    glVertex2f(0.10f, -1.0f);
+    glVertex2f(0.10f,-0.82f);
+    glVertex2f(-.57f,-0.82f);
+    glEnd();
+}
+void road2()
+{
+     glColor3ub(32,32,32);
+    glBegin(GL_POLYGON);
+    glVertex2f(-0.01f,-0.82f);
+    glVertex2f(-0.01f, -1.0f);
+    glVertex2f(1.0f, -1.0f);
+    glVertex2f(1.0f,-0.82f);
+
+    glEnd();
+}
+void field()
+{
+    /*glColor3ub(28,230,0);
+    glBegin(GL_POLYGON);
+    glVertex2f(1.0f, -1.0f);
+    glVertex2f(-1.0f, -0.55f);
+    glVertex2f(-1.0,-1.0);
+    glVertex2f(-0.57,-1.0);
+    glVertex2f(-0.57,-0.72);
+    glVertex2f(-0.55,-0.69);
+    glVertex2f(-0.53,-0.67);
+    glVertex2f(-0.51,-0.65);
+    glVertex2f(-0.55,-0.63);
+    glVertex2f(-0.59,-0.6);
+    glEnd();
+*/
 }
 void myDisplay(void)
 {
@@ -726,14 +831,20 @@ void myDisplay(void)
     glPointSize(2.0);
     sky();
     river();
-    ship();
+    shipLeft();
     hills();
+    grass1();
     tree();
     windMills();
     sun();
     clouds1();
     clouds2();
     moon();
+    road1();
+    bridge();
+    field();
+    //road2();
+
 
 
     glFlush ();
@@ -762,5 +873,6 @@ myInit ();
 
 glutDisplayFunc(myDisplay);
  //glutTimerFunc(1000, update, 0);
+ glutTimerFunc(1000,updateBoat,0);
 glutMainLoop();
 }
