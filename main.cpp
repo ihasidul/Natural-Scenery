@@ -154,7 +154,32 @@ glVertex2f(0.41f, -0.25f);
 glVertex2f(0.41f, -0.2f);
 glEnd();
 }
+void river ()
+{
+    glColor3ub(62,103,185);
+   glBegin(GL_POLYGON);
+   glVertex2f(-1.0f, -0.1f);
+    glVertex2f(-0.8f, -0.1f);
+    glVertex2f(-0.68f, -0.13f);
+   glVertex2f(-0.3f, -0.13f);
+   glVertex2f(-0.4f, -0.32f);
+   glVertex2f(-0.19f, -0.49f);
+   glVertex2f(-0.25f, -0.67f);
+   glVertex2f(-0.04f, -0.79f);
+   glVertex2f(0.016f, -0.86f);
+   glVertex2f(0.019f, -0.90f);
+   glVertex2f(0.021f, -0.905f);
+    glVertex2f(0.02f, -0.91f);
+    glVertex2f(0.025f, -0.915f);
+    glVertex2f(0.023f, -0.920f);
+    glVertex2f(0.025f, -0.925f);
+    glVertex2f(0.027f, -1.0f);
+   glVertex2f(-1.0, -1.0f);
 
+
+   glEnd();
+
+}
 void hills()
 {
     //Hills 1
@@ -673,12 +698,35 @@ void sky()
 	glVertex2f(-1, -.1);
 	glEnd();
 }
+void ship()
+{
+    //base
+    glColor3ub(255,110,0);
+    glBegin(GL_POLYGON);
+   glVertex2f(-0.45f, -0.42f);
+   glVertex2f(-0.65f, -0.42f);
+   glVertex2f(-0.69f, -0.34f);
+   glVertex2f(-0.41f, -0.34f);
+   glEnd();
+
+   //stick
+   glColor3ub(160,82,35);
+   glLineWidth(2);
+   glBegin(GL_LINES);
+   glVertex2f(-0.55,-0.36);
+   glVertex2f(-0.55,-0.06);
+   glEnd();
+
+
+}
 void myDisplay(void)
 {
     glClear (GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
     glPointSize(2.0);
     sky();
+    river();
+    ship();
     hills();
     tree();
     windMills();
